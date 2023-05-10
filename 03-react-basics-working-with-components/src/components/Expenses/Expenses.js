@@ -2,7 +2,7 @@ import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 import Card from "../UI/Card";
 
-export default function Expenses() {
+const Expenses = () => {
   const expenses = [
     {
       id: "e1",
@@ -48,4 +48,6 @@ export default function Expenses() {
       ></ExpenseItem>
     </Card>
   );
-}
+};
+
+export default Expenses;
