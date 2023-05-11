@@ -11,6 +11,25 @@ const Expenses = (props) => {
     setFilterYear(selectedYear);
   };
 
+  const filtedExpenses = props.item.filter((expense) => {
+    return expense.date.getFullYear().toString() === filterYear;
+  });
+
+  let expensesContent = <p>No expenses found.</p>;
+
+  if (filtedExpenses.length > 0) {
+    expensesContent = filtedExpenses.map((expense) => {
+      return (
+        <ExpenseItem
+          key={expense.id}
+          title={expense.title}
+          amount={expense.amount}
+          date={expense.date}
+        />
+      );
+    });
+  }
+
   return (
     <div>
       <Card className="expenses">
@@ -19,15 +38,7 @@ const Expenses = (props) => {
           onChangeFilter={filterChangeHandler}
         />
 
-        {props.item.map((expense) => {
-          return (
-            <ExpenseItem
-              title={expense.title}
-              amount={expense.amount}
-              date={expense.date}
-            />
-          );
-        })}
+        {expensesContent}
       </Card>
     </div>
   );
